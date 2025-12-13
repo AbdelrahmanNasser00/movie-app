@@ -34,4 +34,9 @@ export const moviesService = {
       params: { query },
     })
   },
+  movieSimilar(movieId, page = 1) {
+    return httpClient.get(`/movie/${movieId}/similar`, {
+      params: { page },
+    })
+  },
 }

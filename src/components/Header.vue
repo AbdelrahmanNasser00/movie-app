@@ -1,5 +1,7 @@
 <script setup>
+import { useFavoritesStore } from '@/features/favorites/stores/favorites'
 import { Heart, Search } from 'lucide-vue-next'
+import { storeToRefs } from 'pinia'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
@@ -14,6 +16,9 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
+
+const favoritesStore = useFavoritesStore()
+const { favoritesLength } = storeToRefs(favoritesStore)
 </script>
 
 <template>
@@ -45,8 +50,14 @@ onUnmounted(() => {
         </RouterLink>
         <RouterLink to="/favorites">
           <div
-            class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center cursor-pointer"
+            class="relative w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center cursor-pointer"
           >
+            <Badge
+              class="absolute flex justify-center items-center -top-1 -right-1 h-5 min-w-5 rounded-full px-1 font-mono tabular-nums bg-accent"
+              variant="destructive"
+            >
+              {{ favoritesLength }}
+            </Badge>
             <Heart class="w-4 h-4 text-slate-300" />
           </div>
         </RouterLink>

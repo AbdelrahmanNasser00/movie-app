@@ -36,7 +36,7 @@ const goToDiscover = () => {
       </div>
 
       <!-- Error Message -->
-      <h1 class="mb-4 text-3xl font-bold text-foreground md:text-4xl">Page Not Found</h1>
+      <h1 class="mb-4 text-3xl font-bold text-secondary md:text-4xl">Page Not Found</h1>
       <p class="mb-8 text-lg text-muted-foreground">
         Oops! Looks like this page went off-script. The page you're looking for doesn't exist or has
         been moved.
@@ -44,17 +44,24 @@ const goToDiscover = () => {
 
       <!-- Action Buttons -->
       <div class="flex flex-col gap-3 sm:flex-row sm:justify-center">
-        <Button @click="goHome" class="bg-primary text-primary-foreground hover:bg-primary/90">
+        <Button
+          @click="goHome"
+          class="bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
+        >
           <Home class="mr-2 h-4 w-4" />
           Go to Homepage
         </Button>
 
-        <Button @click="goToDiscover" variant="outline" class="border-border hover:bg-accent">
+        <Button
+          @click="goToDiscover"
+          variant="outline"
+          class="border-border text-primary cursor-pointer"
+        >
           <Search class="mr-2 h-4 w-4" />
           Discover Movies
         </Button>
 
-        <Button @click="goBack" variant="ghost" class="hover:bg-accent">
+        <Button @click="goBack" variant="ghost" class="hover:bg-accent cursor-pointer">
           <ArrowLeft class="mr-2 h-4 w-4" />
           Go Back
         </Button>

@@ -1,9 +1,13 @@
 <script setup>
 import { computed } from 'vue'
-import { Star, Calendar, Eye } from 'lucide-vue-next'
+import { Star, Calendar, Eye, Heart } from 'lucide-vue-next'
 import { Badge } from '@/components/ui/badge'
 import Card from './ui/card/Card.vue'
 import CardContent from './ui/card/CardContent.vue'
+import { useRouter } from 'vue-router'
+import Button from './ui/button/Button.vue'
+import { useFavoritesStore } from '@/features/favorites/stores/favorites'
+import { storeToRefs } from 'pinia'
 
 const props = defineProps({
   movie: {
@@ -11,6 +15,20 @@ const props = defineProps({
     required: true,
   },
 })
+
+const router = useRouter()
+
+const favoritesStore = useFavoritesStore()
+
+const { isFavorite } = storeToRefs(favoritesStore)
+
+const { toggleFavorite } = favoritesStore
+
+const handleFavoriteClick = (event) => {
+  console.log('55555555')
+  event.stopPropagation()
+  toggleFavorite(props.movie)
+}
 
 const imageUrl = computed(() => {
   return props.movie.poster_path
@@ -25,11 +43,16 @@ const releaseYear = computed(() => {
 const popularityPercentage = computed(() => {
   return Math.min((props.movie.popularity / 100) * 100, 100)
 })
+
+const handleCardClick = () => {
+  router.push({ name: 'MovieDetails', params: { id: props.movie.id } })
+}
 </script>
 
 <template>
   <Card
-    class="group relative overflow-hidden rounded-2xl border-0 bg-transparent shadow-none transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
+    class="group relative cursor-pointer overflow-hidden rounded-2xl border-0 bg-transparent shadow-none transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
+    @click="handleCardClick"
   >
     <div
       class="relative aspect-2/3 w-full overflow-hidden rounded-t-2xl bg-gradient-to-br from-muted to-card"
@@ -61,6 +84,18 @@ const popularityPercentage = computed(() => {
         <Eye class="h-3 w-3 text-white/80" />
         <span class="text-xs font-medium text-white/90">{{ movie.vote_count }}</span>
       </Badge>
+
+      <Button
+        @click="handleFavoriteClick"
+        size="sm"
+        variant="outline"
+        class="absolute top-15 right-2 p-2 rounded-full transition-colors z-10 cursor-pointer"
+        :class="
+          isFavorite(movie.id) ? 'bg-red-500 text-white' : 'bg-black/50 text-white hover:bg-red-500'
+        "
+      >
+        <Heart class="h-4 w-4" :class="{ 'fill-current': isFavorite(movie.id) }" />
+      </Button>
 
       <div
         class="absolute bottom-0 left-0 right-0 translate-y-full p-4 transition-transform duration-300 group-hover:translate-y-0"
