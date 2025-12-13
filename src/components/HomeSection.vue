@@ -23,8 +23,8 @@ defineProps({
 </script>
 
 <template>
-  <div class="py-8 space-y-4 max-w-7xl mx-auto flex flex-col gap-12">
-    <div class="px-4 md:px-8">
+  <div class="py-8 max-w-7xl mx-auto">
+    <div class="px-4 md:px-8 !mb-2">
       <h2 class="text-2xl font-bold text-white">{{ header }}</h2>
       <p v-if="subheader" class="text-muted-foreground text-sm mt-1">
         {{ subheader }}
@@ -39,10 +39,13 @@ defineProps({
         :space-between="16"
         :autoplay="{ delay: 5000, disableOnInteraction: true }"
         :breakpoints="{
-          320: { slidesPerView: 2, spaceBetween: 10 },
-          640: { slidesPerView: 3, spaceBetween: 15 },
-          1024: { slidesPerView: 5, spaceBetween: 20 },
-          1280: { slidesPerView: 6, spaceBetween: 24 },
+          320: { slidesPerView: 2, spaceBetween: 12 },
+          480: { slidesPerView: 2.5, spaceBetween: 12 },
+          640: { slidesPerView: 3, spaceBetween: 16 },
+          768: { slidesPerView: 3.5, spaceBetween: 16 },
+          1024: { slidesPerView: 4.5, spaceBetween: 20 },
+          1280: { slidesPerView: 5.5, spaceBetween: 20 },
+          1536: { slidesPerView: 6, spaceBetween: 24 },
         }"
         class="movie-swiper !overflow-visible"
       >

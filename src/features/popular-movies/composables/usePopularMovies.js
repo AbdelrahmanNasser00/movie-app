@@ -2,14 +2,12 @@ import { moviesService } from '@/api/services/moviesService'
 import { useQuery } from '@tanstack/vue-query'
 import { computed, ref } from 'vue'
 
-export const useTrendingMovies = (initialTimeWindow = 'week') => {
-  const timeWindow = ref(initialTimeWindow)
+export const usePopularMovies = () => {
   const page = ref(1)
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['trending-movies', timeWindow, page],
-    queryFn: () =>
-      moviesService.getTrendingMovies(timeWindow.value, page.value).then((res) => res.data),
+    queryKey: ['popular-movies', page],
+    queryFn: () => moviesService.getPopular(page.value).then((res) => res.data),
     keepPreviousData: true,
     staleTime: 1000 * 60 * 5,
   })
@@ -26,6 +24,5 @@ export const useTrendingMovies = (initialTimeWindow = 'week') => {
     isLoading,
     error,
     page,
-    timeWindow,
   }
 }

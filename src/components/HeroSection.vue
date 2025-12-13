@@ -8,33 +8,18 @@ import 'swiper/css'
 import 'swiper/css/effect-fade'
 import 'swiper/css/pagination'
 
-const featuredMovies = [
-  {
-    id: 1,
-    title: 'Elio',
-    overview:
-      'Elio, a space fanatic with an active imagination, finds himself on a cosmic misadventure.',
-    backdrop_path: '/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg',
-    vote_average: 7.0,
-    release_date: '2025-06-13',
-    genre: 'Animation',
+defineProps({
+  movies: {
+    type: Array,
+    required: true,
   },
-  {
-    id: 2,
-    title: 'Dune: Part Two',
-    overview: 'Paul Atreides unites with Chani and the Fremen while on a warpath of revenge.',
-    backdrop_path: '/xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg',
-    vote_average: 8.3,
-    release_date: '2024-03-01',
-    genre: 'Sci-Fi',
-  },
-]
+})
 
 const getBackdropUrl = (path) => `https://image.tmdb.org/t/p/original${path}`
 </script>
 
 <template>
-  <div class="relative w-full h-[80vh]">
+  <div class="relative w-full h-screen overflow-hidden">
     <swiper
       :modules="[Autoplay, EffectFade, Pagination]"
       :effect="'fade'"
@@ -43,7 +28,7 @@ const getBackdropUrl = (path) => `https://image.tmdb.org/t/p/original${path}`
       :pagination="{ clickable: true }"
       class="h-full w-full"
     >
-      <swiper-slide v-for="movie in featuredMovies" :key="movie.id">
+      <swiper-slide v-for="movie in movies" :key="movie.id">
         <div class="relative h-full w-full">
           <img
             :src="getBackdropUrl(movie.backdrop_path)"
@@ -52,9 +37,6 @@ const getBackdropUrl = (path) => `https://image.tmdb.org/t/p/original${path}`
           />
           <div
             class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent"
-          ></div>
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"
           ></div>
 
           <div class="absolute inset-0 container flex flex-col justify-center px-6 md:px-12">
@@ -78,13 +60,16 @@ const getBackdropUrl = (path) => `https://image.tmdb.org/t/p/original${path}`
               </p>
 
               <div class="flex gap-4 pt-4">
-                <Button size="lg" class="gap-2 bg-primary hover:bg-primary/90 text-white">
+                <Button
+                  size="lg"
+                  class="gap-2 bg-primary hover:bg-primary/90 text-white cursor-pointer"
+                >
                   <Play class="h-5 w-5 fill-current" /> Watch Now
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  class="gap-2 text-white border-white/30 hover:bg-white/20"
+                  class="gap-2 text-gray-900 border-white/30 cursor-pointer"
                 >
                   <Plus class="h-5 w-5" /> My List
                 </Button>

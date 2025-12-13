@@ -1,6 +1,6 @@
 import httpClient from '@/api/api'
 
-export const trendingMoviesService = {
+export const moviesService = {
   getTrendingMovies: (timeWindow = 'week', page = 1) => {
     return httpClient.get(`/trending/movie/${timeWindow}`, {
       params: { page },
@@ -8,5 +8,25 @@ export const trendingMoviesService = {
   },
   getDetails: (movieId) => {
     return httpClient.get(`/movie/${movieId}`)
+  },
+  getTopRated: (page = 1) => {
+    return httpClient.get('/movie/top_rated', {
+      params: { page },
+    })
+  },
+  getPopular: (page = 1) => {
+    return httpClient.get('/movie/popular', {
+      params: { page },
+    })
+  },
+  getGenres: () => {
+    return httpClient.get('/genre/movie/list')
+  },
+  getDiscoverMovies(genreId = null) {
+    const params = {}
+    if (genreId) {
+      params.with_genres = genreId
+    }
+    return httpClient.get('/discover/movie', { params })
   },
 }

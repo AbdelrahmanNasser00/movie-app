@@ -31,7 +31,6 @@ const popularityPercentage = computed(() => {
   <Card
     class="group relative overflow-hidden rounded-2xl border-0 bg-transparent shadow-none transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
   >
-    <!-- Image Container -->
     <div
       class="relative aspect-2/3 w-full overflow-hidden rounded-t-2xl bg-gradient-to-br from-muted to-card"
     >
@@ -42,12 +41,10 @@ const popularityPercentage = computed(() => {
         loading="lazy"
       />
 
-      <!-- Gradient Overlay on Hover -->
       <div
         class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
       />
 
-      <!-- Rating Badge -->
       <Badge
         class="absolute top-3 right-3 flex items-center gap-1.5 rounded-full border-0 bg-gradient-to-r from-primary to-amber-500 px-3 py-1.5 shadow-lg backdrop-blur-sm transition-transform duration-300 hover:bg-primary group-hover:scale-110"
       >
@@ -57,7 +54,6 @@ const popularityPercentage = computed(() => {
         </span>
       </Badge>
 
-      <!-- Vote Count Badge -->
       <Badge
         variant="secondary"
         class="absolute top-3 left-3 flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2.5 py-1 backdrop-blur-md"
@@ -66,7 +62,6 @@ const popularityPercentage = computed(() => {
         <span class="text-xs font-medium text-white/90">{{ movie.vote_count }}</span>
       </Badge>
 
-      <!-- Overview on Hover -->
       <div
         class="absolute bottom-0 left-0 right-0 translate-y-full p-4 transition-transform duration-300 group-hover:translate-y-0"
       >
@@ -76,7 +71,6 @@ const popularityPercentage = computed(() => {
       </div>
     </div>
 
-    <!-- Card Content -->
     <CardContent
       class="rounded-b-2xl border-t border-primary/20 bg-gradient-to-b from-card to-card/80 p-4"
     >
@@ -94,7 +88,6 @@ const popularityPercentage = computed(() => {
         <span class="text-xs uppercase tracking-wide">{{ movie.original_language }}</span>
       </div>
 
-      <!-- Popularity Bar -->
       <div class="mt-3 space-y-1">
         <div class="flex items-center justify-between text-xs">
           <span class="text-muted-foreground">Popularity</span>
