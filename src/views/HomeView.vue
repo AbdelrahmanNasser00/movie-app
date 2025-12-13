@@ -42,7 +42,6 @@ const {
   isLoading: isDiscoverLoading,
   error: discoverError,
 } = useDiscoverMovies(activeGenreId)
-console.log(discoverMovies.value)
 </script>
 
 <template>
@@ -103,7 +102,7 @@ console.log(discoverMovies.value)
       />
       <BrowseByGenreSection
         v-else
-        :movies="discoverMovies"
+        :movies="discoverMovies.slice(0, 8) ?? []"
         :genres="genres.slice(0, 5) ?? []"
         :activeGenreId="activeGenreId"
         @filter="handleFilter"

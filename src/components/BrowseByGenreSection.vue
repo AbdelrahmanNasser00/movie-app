@@ -1,6 +1,4 @@
 <script setup>
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Navigation, Autoplay } from 'swiper/modules'
 import MovieCard from './MovieCard.vue'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -59,61 +57,10 @@ const handleGenreSelect = (id) => {
       </div>
     </div>
 
-    <div class="w-full px-6 md:px-8 overflow-hidden">
-      <Swiper
-        :modules="[Navigation, Autoplay]"
-        :navigation="true"
-        :loop="true"
-        :space-between="10"
-        :autoplay="{ delay: 5000, disableOnInteraction: true }"
-        :breakpoints="{
-          320: { slidesPerView: 2, spaceBetween: 12 },
-          480: { slidesPerView: 2.5, spaceBetween: 12 },
-          640: { slidesPerView: 3, spaceBetween: 16 },
-          768: { slidesPerView: 3.5, spaceBetween: 16 },
-          1024: { slidesPerView: 4, spaceBetween: 16 },
-          1280: { slidesPerView: 5, spaceBetween: 16 },
-          1536: { slidesPerView: 6, spaceBetween: 16 },
-        }"
-        class="movie-swiper"
-      >
-        <SwiperSlide v-for="movie in movies" :key="movie.id" class="h-auto">
-          <MovieCard :movie="movie" />
-        </SwiperSlide>
-      </Swiper>
+    <div
+      class="w-full grid grid-rows-2 gap-4 grid-cols-1 md:grid-rows-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+    >
+      <MovieCard v-for="movie in movies" :key="movie.id" :movie="movie" />
     </div>
   </div>
 </template>
-
-<style scoped>
-.movie-swiper {
-  overflow: visible;
-  padding: 4px 0;
-}
-
-.movie-swiper :deep(.swiper-button-next),
-.movie-swiper :deep(.swiper-button-prev) {
-  color: white;
-  background: rgba(0, 0, 0, 0.6);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  transition: opacity 0.3s;
-}
-
-.movie-swiper :deep(.swiper-button-next):hover,
-.movie-swiper :deep(.swiper-button-prev):hover {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-.movie-swiper :deep(.swiper-button-disabled) {
-  opacity: 0.3;
-}
-
-@media (max-width: 640px) {
-  .movie-swiper :deep(.swiper-button-next),
-  .movie-swiper :deep(.swiper-button-prev) {
-    display: none;
-  }
-}
-</style>
