@@ -36,16 +36,20 @@ onUnmounted(() => {
       </div>
 
       <div class="gap-2 flex">
-        <div
-          class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center cursor-pointer"
-        >
-          <Search class="w-4 h-4 text-slate-300" />
-        </div>
-        <div
-          class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center cursor-pointer"
-        >
-          <Heart class="w-4 h-4 text-slate-300" />
-        </div>
+        <RouterLink to="/discover">
+          <div
+            class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center cursor-pointer"
+          >
+            <Search class="w-45 h-4 text-slate-300" />
+          </div>
+        </RouterLink>
+        <RouterLink to="/favorites">
+          <div
+            class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center cursor-pointer"
+          >
+            <Heart class="w-4 h-4 text-slate-300" />
+          </div>
+        </RouterLink>
       </div>
     </div>
   </nav>

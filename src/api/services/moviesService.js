@@ -22,11 +22,16 @@ export const moviesService = {
   getGenres: () => {
     return httpClient.get('/genre/movie/list')
   },
-  getDiscoverMovies(genreId = null) {
-    const params = {}
+  getDiscoverMovies(genreId = null, page = 1) {
+    const params = { page }
     if (genreId) {
       params.with_genres = genreId
     }
     return httpClient.get('/discover/movie', { params })
+  },
+  searchMovies(query) {
+    return httpClient.get('/search/movie', {
+      params: { query },
+    })
   },
 }
